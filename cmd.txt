@@ -1,0 +1,78 @@
+
+To start posting on connected platforms, you'll need to run the main script that executes the social media bot. Here are the commands you should use:
+
+## Basic Posting Command
+
+```
+python social_media_bot/main.py
+```
+
+This will run the automated posting process using all enabled platforms in your configuration.
+
+## Check Which Platforms Are Enabled
+
+To see which platforms are currently enabled and connected, you can use:
+
+```
+python social_media_bot/utils/platform_status.py
+```
+
+This will show you the status of all configured platforms (Reddit, Dev.to, Mastodon, and Threads).
+
+## Post to Specific Platforms Only
+
+If you want to post to specific platforms only:
+
+```
+python social_media_bot/post_tech_news.py --platforms reddit,devto
+```
+
+Replace "reddit,devto" with your preferred platforms (options: reddit, devto, mastodon, threads).
+
+## Test a Single Post to a Platform
+
+For testing a post to a specific platform:
+
+```
+python social_media_bot/test_reddit_post.py
+```
+
+Replace "reddit" with the platform you want to test (test_devto_post.py, etc.)
+
+For the platforms to work, make sure you've:
+1. Set up the appropriate API keys in your .env file
+2. Installed the required dependencies (which you've done with the updated requirements.txt)
+3. Confirmed your authentication is working correctly
+
+Based on the codebase, the following platforms are implemented:
+- Reddit (using PRAW)
+- Dev.to
+- Mastodon
+- Threads (Instagram)
+
+Your content quality framework will automatically be used when posting to ensure all content meets quality standards.
+
+
+
+To post to platforms other than Reddit, use this command:
+
+```
+python -m social_media_bot.post_tech_news --platforms dev.to,mastodon
+```
+
+You can specify any combination of platforms:
+- For a single platform: `--platforms dev.to`
+- For multiple platforms: `--platforms reddit,dev.to,mastodon,threads`
+
+The original functionality for posting to Reddit only is still preserved with:
+```
+python -m social_media_bot.post_tech_news --reddit
+```
+
+If you run without any flags, it will attempt to post to all available connected platforms.
+
+   # Post to specific platforms with content enhancement
+   python -m social_media_bot.multi_platform_post --platforms dev.to,mastodon
+   
+   # Post to all available platforms without enhancement
+   python -m social_media_bot.multi_platform_post --no-enhance

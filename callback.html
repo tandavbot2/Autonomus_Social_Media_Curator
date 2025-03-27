@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authorization Callback</title>
+    <script>
+        // Extract code from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        
+        if (code) {
+            // Send code to your backend
+            fetch('http://localhost:8000/callback?code=' + code)
+                .then(response => response.text())
+                .then(text => {
+                    document.getElementById('message').textContent = text;
+                })
+                .catch(error => {
+                    document.getElementById('message').textContent = 'Error: ' + error;
+                });
+        } else {
+            document.getElementById('message').textContent = 'No authorization code received';
+        }
+    </script>
+</head>
+<body>
+    <h1>Authorization Complete</h1>
+    <p id="message">Processing authorization...</p>
+</body>
+</html> 

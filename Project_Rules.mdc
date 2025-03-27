@@ -1,0 +1,253 @@
+# Project Rules - Autonomous Social Media Curator
+
+## Development Guidelines and Best Practices
+
+This document outlines the rules, conventions, and best practices for the development of the Autonomous Social Media Curator project. All contributors should adhere to these guidelines to ensure code quality, consistency, and maintainability.
+
+## 1. Code Structure and Organization
+
+### 1.1 Backend Structure
+- Follow the defined directory structure in the Backend Structure Document
+- Keep API endpoints in `/app/api/` directory
+- Place business logic in `/app/services/`
+- Keep database models in `/app/db/models/`
+- Create reusable utilities in `/app/utils/`
+- Use Pydantic schemas for request/response models
+
+### 1.2 Frontend Structure
+- Follow the directory structure in the Frontend Guidelines Document
+- Keep page components in `/src/views/`
+- Place reusable components in `/src/components/`
+- Organize stores by feature in `/src/stores/`
+- Define API services in `/src/services/api/`
+- Keep utilities in `/src/utils/`
+
+## 2. Coding Standards
+
+### 2.1 Python (Backend)
+- Follow PEP 8 style guide
+- Use type annotations for function parameters and return values
+- Write docstrings for all functions, classes, and modules
+- Keep functions focused on single responsibility
+- Maximum line length: 88 characters (Black formatter)
+- Use async/await for I/O-bound operations
+
+### 2.2 JavaScript/TypeScript (Frontend)
+- Use TypeScript for all new code
+- Follow Vue.js style guide (Priority A: Essential)
+- Use Composition API with `<script setup>` syntax
+- Use Pinia for state management
+- Prefer `ref()` and `reactive()` over `data()`
+- Maximum line length: 100 characters
+- Use ESLint and Prettier for formatting
+
+### 2.3 HTML/CSS
+- Follow BEM methodology for CSS class naming
+- Use SCSS for styling with well-organized variables
+- Write responsive designs with mobile-first approach
+- Keep component-specific styles scoped
+- Use Vuetify grid system for layouts
+
+## 3. Database Practices
+
+### 3.1 Models
+- Define clear relationships between models
+- Use appropriate column types
+- Include created_at and updated_at timestamps
+- Add appropriate indexes for frequently queried fields
+- Use migrations for schema changes
+
+### 3.2 Queries
+- Use SQLAlchemy ORM for database queries
+- Avoid N+1 query problems
+- Implement pagination for large result sets
+- Use transactions for operations that modify multiple records
+- Handle database errors gracefully
+
+## 4. API Design
+
+### 4.1 Endpoints
+- Use RESTful conventions for API endpoints
+- Version APIs in the URL (e.g., `/api/v1/`)
+- Use appropriate HTTP methods (GET, POST, PUT, DELETE)
+- Return consistent response formats
+- Include appropriate status codes
+
+### 4.2 Authentication
+- Use Firebase Authentication for user auth
+- Validate tokens on the backend
+- Apply proper authorization checks
+- Handle token expiration gracefully
+- Use HTTPS for all API requests
+
+## 5. Error Handling
+
+### 5.1 Backend
+- Use custom exception classes
+- Return appropriate HTTP status codes
+- Include descriptive error messages
+- Log errors with context information
+- Handle expected exceptions gracefully
+
+### 5.2 Frontend
+- Implement global error handling
+- Show user-friendly error messages
+- Log detailed errors to the console in development
+- Send errors to monitoring in production
+- Handle network errors appropriately
+
+## 6. Testing
+
+### 6.1 Backend Tests
+- Write unit tests for services and utilities
+- Create integration tests for API endpoints
+- Use pytest for test framework
+- Aim for at least 70% code coverage
+- Mock external dependencies
+
+### 6.2 Frontend Tests
+- Test components with Vue Test Utils
+- Use Vitest for unit testing
+- Test critical user flows with Cypress
+- Mock API responses for component tests
+- Test store actions and mutations
+
+## 7. Security
+
+### 7.1 Authentication
+- Use Firebase Authentication
+- Implement proper token validation
+- Apply role-based access control
+- Set secure cookie attributes
+- Use HTTPS for all requests
+
+### 7.2 Data Protection
+- Never expose sensitive data in API responses
+- Store credentials securely (encrypted in database)
+- Implement rate limiting for API endpoints
+- Validate and sanitize all inputs
+- Follow OWASP security guidelines
+
+## 8. Performance
+
+### 8.1 Backend
+- Optimize database queries
+- Use caching for expensive operations
+- Implement pagination for large result sets
+- Profile and optimize slow endpoints
+- Use async operations for I/O-bound tasks
+
+### 8.2 Frontend
+- Implement code splitting for routes
+- Lazy load components when appropriate
+- Optimize images and assets
+- Minimize API requests
+- Use virtual scrolling for large lists
+
+## 9. Git Workflow
+
+### 9.1 Branching Strategy
+- Use `main` branch for production code
+- Create `develop` branch for ongoing development
+- Use feature branches for new features
+- Name feature branches with prefix: `feature/`, `bugfix/`, `hotfix/`
+- Delete branches after merging
+
+### 9.2 Commits
+- Write clear, descriptive commit messages
+- Begin commit messages with a verb (Add, Fix, Update, etc.)
+- Keep commits focused and atomic
+- Reference issue numbers in commit messages
+- Sign commits with GPG (optional)
+
+### 9.3 Pull Requests
+- Create descriptive pull request titles
+- Include detailed description of changes
+- Link to relevant issues
+- Request reviews from appropriate team members
+- Ensure all tests pass before merging
+
+## 10. Documentation
+
+### 10.1 Code Documentation
+- Write clear docstrings for Python functions
+- Include JSDoc comments for TypeScript/JavaScript
+- Document complex algorithms with comments
+- Update relevant documentation when changing code
+- Document API endpoints with examples
+
+### 10.2 Project Documentation
+- Keep README.md updated with setup instructions
+- Maintain up-to-date architecture documentation
+- Document configuration options
+- Include troubleshooting guides
+- Create user documentation for features
+
+## 11. Deployment
+
+### 11.1 Environment Configuration
+- Use environment variables for configuration
+- Keep different configs for development/staging/production
+- Never commit sensitive values to repository
+- Use .env.example file to document required variables
+- Validate required environment variables on startup
+
+### 11.2 Deployment Process
+- Automate deployments with CI/CD
+- Run tests before deployment
+- Include database migrations in deployment
+- Use semantic versioning for releases
+- Maintain deployment documentation
+
+## 12. Dependency Management
+
+### 12.1 Backend Dependencies
+- Use pyproject.toml for Python dependencies
+- Pin dependency versions for reproducible builds
+- Regularly update dependencies for security fixes
+- Document purpose of non-obvious dependencies
+- Minimize unnecessary dependencies
+
+### 12.2 Frontend Dependencies
+- Use package.json for JavaScript dependencies
+- Lock dependency versions with package-lock.json
+- Regularly update dependencies for security fixes
+- Use established, well-maintained libraries
+- Avoid unnecessary dependencies
+
+## 13. Monitoring and Logging
+
+### 13.1 Logging
+- Use structured logging
+- Include context in log messages
+- Log appropriate levels (DEBUG, INFO, WARNING, ERROR)
+- Don't log sensitive information
+- Rotate log files to prevent disk filling
+
+### 13.2 Monitoring
+- Implement health check endpoints
+- Monitor API response times
+- Track error rates
+- Set up alerts for critical issues
+- Collect usage metrics for features
+
+## 14. Accessibility
+
+### 14.1 Frontend Accessibility
+- Follow WCAG 2.1 guidelines
+- Use semantic HTML elements
+- Provide alt text for images
+- Ensure keyboard navigation works
+- Maintain sufficient color contrast
+- Test with screen readers
+
+## 15. Implementation Priorities
+
+For the initial showcase implementation, prioritize:
+1. Core functionality over completeness
+2. Working features over perfect code
+3. User experience over backend sophistication
+4. Simple solutions over complex architecture
+5. Reusing existing code over writing new implementations
+
+These rules are subject to refinement as the project evolves. 
